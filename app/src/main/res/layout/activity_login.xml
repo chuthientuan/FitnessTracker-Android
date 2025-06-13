@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/Widget.MaterialComponents.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/bebasneue_regular"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:textSize="46sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoogle"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/figtree_regular"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/login_with_google"
+        android:textColor="@color/text_color"
+        android:textSize="14sp"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/googleg_standard_color_18"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconTint="@null" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFacebook"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/figtree_regular"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/login_with_facebook"
+        android:textColor="@color/text_color"
+        android:textSize="14sp"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_facebook"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="20dp"
+        app:iconTint="@null" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEmail"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/figtree_regular"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/login_with_email"
+        android:textColor="@color/text_color"
+        android:textSize="14sp"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_email"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconSize="20dp"
+        app:iconTint="@color/black" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/figtree_regular"
+        android:text="@string/new_here_sign_up"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+</LinearLayout>
