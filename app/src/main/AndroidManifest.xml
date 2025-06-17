@@ -20,9 +20,6 @@
             android:name=".SurveyResultActivity"
             android:exported="false" />
         <activity
-            android:name=".SuccessStepActivity"
-            android:exported="false" />
-        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
