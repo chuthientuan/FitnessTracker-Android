@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/bebasneue_regular"
+        android:text="@string/how_tall_are_you"
+        android:textColor="@color/text_color"
+        android:textSize="46sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/figtree_regular"
+        android:text="@string/select_your_height"
+        android:textColor="@color/text_color"
+        android:textSize="14sp" />
+
+    <NumberPicker
+        android:id="@+id/heightPicker"
+        android:layout_width="384dp"
+        android:layout_height="210dp"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

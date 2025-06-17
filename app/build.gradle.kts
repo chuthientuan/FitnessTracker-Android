@@ -43,6 +43,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
+    implementation("com.airbnb.android:lottie:6.6.6")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

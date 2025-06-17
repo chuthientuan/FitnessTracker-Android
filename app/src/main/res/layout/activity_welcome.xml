@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".WelcomeActivity">
 
@@ -13,7 +14,7 @@
         android:layout_width="312dp"
         android:layout_height="312dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="80dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/smart_wearables__streamline_brooklyn" />
 
@@ -32,12 +33,10 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnJoinNow"
         style="@style/Widget.Material3.Button"
-        android:layout_width="match_parent"
+        android:layout_width="236dp"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="80dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/green_bg"
         android:fontFamily="@font/figtree_medium"
@@ -51,11 +50,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
         style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="match_parent"
+        android:layout_width="236dp"
         android:layout_height="48dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
         android:fontFamily="@font/figtree_medium"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"

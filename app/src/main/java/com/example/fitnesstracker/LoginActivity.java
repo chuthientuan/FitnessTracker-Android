@@ -13,7 +13,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
 public class LoginActivity extends AppCompatActivity {
-    MaterialButton btnEmail;
+    MaterialButton btnEmail, btnGoogle, btnFacebook;
     MaterialTextView txtSignUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,15 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
         btnEmail = findViewById(R.id.btnEmail);
+        btnGoogle = findViewById(R.id.btnGoogle);
+        btnFacebook = findViewById(R.id.btnFacebook);
         txtSignUp = findViewById(R.id.txtSignUp);
         btnEmail.setOnClickListener(v -> {
             Intent intent = new Intent(this, EmailLoginActivity.class);
+            startActivity(intent);
+        });
+        btnGoogle.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
         txtSignUp.setOnClickListener(v -> {
