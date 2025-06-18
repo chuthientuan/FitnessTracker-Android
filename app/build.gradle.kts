@@ -44,7 +44,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation("com.airbnb.android:lottie:6.6.6")
-    implementation("com.facebook.android:facebook-android-sdk:[4,5)")
+    implementation("com.facebook.android:facebook-android-sdk:18.0.3")
     implementation(libs.firebase.auth)
     implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
