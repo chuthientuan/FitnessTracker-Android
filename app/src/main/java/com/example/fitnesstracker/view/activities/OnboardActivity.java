@@ -1,4 +1,4 @@
-package com.example.fitnesstracker;
+package com.example.fitnesstracker.view.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,11 +14,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.fitnesstracker.R;
+import com.example.fitnesstracker.view.fragments.Step1Fragment;
+import com.example.fitnesstracker.adapter.StepPagerAdapter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.textview.MaterialTextView;
 
-public class MainActivity extends AppCompatActivity {
+public class OnboardActivity extends AppCompatActivity {
     private static final int TOTAL_STEPS = 8;
     ViewPager2 viewPager;
     MaterialTextView tvProgress;
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_onboard);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
