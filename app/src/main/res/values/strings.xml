@@ -60,4 +60,7 @@
     <string name="ic_other">🧑‍🎓</string>
     <string name="ic_man">👨</string>
     <string name="ic_woman">👩</string>
+    <string name="facebook_app_id">9976155629171837</string>
+    <string name="fb_login_protocol_scheme">fb9976155629171837</string>
+    <string name="facebook_client_token">b0cf485b91dc58349dc020f453011f2a</string>
 </resources>

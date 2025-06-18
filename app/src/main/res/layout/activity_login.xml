@@ -8,7 +8,7 @@
     android:background="@color/background"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".view.activities.LoginActivity">
 
     <com.google.android.material.textview.MaterialTextView
         style="@style/Widget.MaterialComponents.TextView"

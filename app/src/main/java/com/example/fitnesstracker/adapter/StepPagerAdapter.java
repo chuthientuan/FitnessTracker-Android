@@ -1,9 +1,18 @@
-package com.example.fitnesstracker;
+package com.example.fitnesstracker.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.fitnesstracker.view.fragments.Step1Fragment;
+import com.example.fitnesstracker.view.fragments.Step2Fragment;
+import com.example.fitnesstracker.view.fragments.Step3Fragment;
+import com.example.fitnesstracker.view.fragments.Step4Fragment;
+import com.example.fitnesstracker.view.fragments.Step5Fragment;
+import com.example.fitnesstracker.view.fragments.Step6Fragment;
+import com.example.fitnesstracker.view.fragments.Step7Fragment;
+import com.example.fitnesstracker.view.fragments.Step8Fragment;
 
 public class StepPagerAdapter extends FragmentStateAdapter {
     public StepPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
