@@ -8,7 +8,7 @@
     android:background="@color/background"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".WelcomeActivity">
+    tools:context=".view.activities.WelcomeActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="312dp"
