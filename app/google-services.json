@@ -12,7 +12,20 @@
           "package_name": "com.example.fitnesstracker"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1050220367875-a098q307dn4pj83harv0m134jvlgatr7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitnesstracker",
+            "certificate_hash": "880ecf3748cf726d112f1c6ce24e9f96fee96d7d"
+          }
+        },
+        {
+          "client_id": "1050220367875-7fjnm8mcumjf02ac6eg006d6f6d12g21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCxIdQWVyihaRQmAeqkiapXRK0tjdLBOq0"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050220367875-7fjnm8mcumjf02ac6eg006d6f6d12g21.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
