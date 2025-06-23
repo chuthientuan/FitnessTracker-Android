@@ -2,9 +2,11 @@ package com.example.fitnesstracker.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -14,6 +16,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fitnesstracker.R;
 import com.example.fitnesstracker.viewmodel.LoginViewModel;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,8 +34,10 @@ import com.google.android.material.button.MaterialButton;
 
 public class EmailLoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN_WITH_GOOGLE = 1001;
+    LoginButton btnFacebookHidden;
     private LoginViewModel loginViewModel;
-    MaterialButton btnGoogle;
+    private CallbackManager callbackManager;
+    MaterialButton btnGoogle, btnFacebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +50,10 @@ public class EmailLoginActivity extends AppCompatActivity {
             return insets;
         });
         btnGoogle = findViewById(R.id.btnGoogle);
+        btnFacebookHidden = findViewById(R.id.btnFacebookHidden);
+        btnFacebook = findViewById(R.id.btnFacebook);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        // Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -46,9 +61,36 @@ public class EmailLoginActivity extends AppCompatActivity {
 
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, gso);
         btnGoogle.setOnClickListener(v -> {
-            Intent signInIntent = googleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, RC_SIGN_IN_WITH_GOOGLE);
+            googleSignInClient.signOut().addOnCompleteListener(task -> {
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN_WITH_GOOGLE);
+            });
         });
+        // Facebook Sign In
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this.getApplication());
+        callbackManager = CallbackManager.Factory.create();
+        btnFacebookHidden.setReadPermissions("email", "public_profile");
+        btnFacebookHidden.registerCallback(callbackManager, new FacebookCallback<>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                loginViewModel.handleFacebookAccessToken(loginResult.getAccessToken());
+                AccessToken accessToken = loginResult.getAccessToken();
+                Log.d("FB_ACCESS_TOKEN", "Token: " + accessToken.getToken());
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(@NonNull FacebookException e) {
+
+            }
+        });
+        btnFacebook.setOnClickListener(v -> btnFacebookHidden.performClick());
+
         loginViewModel.getUser().observe(this, user -> {
             if (user != null) {
                 Intent intent = new Intent(this, OnboardActivity.class);
@@ -61,6 +103,7 @@ public class EmailLoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // Google Sign In
         if (requestCode == RC_SIGN_IN_WITH_GOOGLE) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -73,5 +116,7 @@ public class EmailLoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show();
             }
         }
+        // Facebook Sign In
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
