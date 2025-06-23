@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.FitnessTracker" parent="Base.Theme.FitnessTracker" />
+
+    <style name="Theme.SplashscreenTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splashscreen</item>
+    </style>
 </resources>

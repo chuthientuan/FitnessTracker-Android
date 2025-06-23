@@ -44,6 +44,12 @@
         app:strokeColor="@color/stroke"
         app:strokeWidth="1dp" />
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnFacebookHidden"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:visibility="gone" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnFacebook"
         style="@style/Widget.Material3.Button"
