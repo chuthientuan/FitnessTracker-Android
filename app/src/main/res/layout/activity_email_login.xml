@@ -32,7 +32,8 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/white_bg"
             android:fontFamily="@font/figtree_regular"
-            android:hint="@string/full_name"
+            android:hint="@string/email"
+            android:imeOptions="actionNext"
             android:inputType="text"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -47,6 +48,7 @@
             android:background="@drawable/white_bg"
             android:fontFamily="@font/figtree_regular"
             android:hint="@string/password"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
@@ -181,7 +183,7 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCreateNew"
+            android:id="@+id/btnCreateNewAccount"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="320dp"
             android:layout_height="48dp"
