@@ -3,6 +3,7 @@ package com.example.fitnesstracker.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,13 +32,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN_WITH_GOOGLE = 1001;
     LoginButton btnFacebookHidden;
     private LoginViewModel loginViewModel;
     private CallbackManager callbackManager;
-    MaterialButton btnGoogle, btnFacebook;
+    MaterialButton btnGoogle, btnFacebook, btnSignup;
+    MaterialAutoCompleteTextView edtName, edtPassword;
+    MaterialTextView txtAlreadyAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,10 @@ public class SignUpActivity extends AppCompatActivity {
         btnGoogle = findViewById(R.id.btnGoogle);
         btnFacebookHidden = findViewById(R.id.btnFacebookHidden);
         btnFacebook = findViewById(R.id.btnFacebook);
+        btnSignup = findViewById(R.id.btnSignup);
+        edtName = findViewById(R.id.edtName);
+        edtPassword = findViewById(R.id.edtPassword);
+        txtAlreadyAccount = findViewById(R.id.txtAlreadyAccount);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         // Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -90,13 +100,32 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
         btnFacebook.setOnClickListener(v -> btnFacebookHidden.performClick());
-
         loginViewModel.getUser().observe(this, user -> {
             if (user != null) {
                 Intent intent = new Intent(this, OnboardActivity.class);
                 startActivity(intent);
                 finish();
             }
+        });
+
+        // Signup with Email
+        btnSignup.setOnClickListener(v -> {
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            String email = edtName.getText().toString();
+            String password = edtPassword.getText().toString();
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Signup successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Signup failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        });
+        txtAlreadyAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(this, EmailLoginActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 

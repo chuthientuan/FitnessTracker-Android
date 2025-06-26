@@ -31,13 +31,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 public class EmailLoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN_WITH_GOOGLE = 1001;
     LoginButton btnFacebookHidden;
     private LoginViewModel loginViewModel;
     private CallbackManager callbackManager;
-    MaterialButton btnGoogle, btnFacebook;
+    MaterialButton btnGoogle, btnFacebook, btnCreateNewAccount, btnLogin;
+    MaterialAutoCompleteTextView edtName, edtPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,10 @@ public class EmailLoginActivity extends AppCompatActivity {
         btnGoogle = findViewById(R.id.btnGoogle);
         btnFacebookHidden = findViewById(R.id.btnFacebookHidden);
         btnFacebook = findViewById(R.id.btnFacebook);
+        btnCreateNewAccount = findViewById(R.id.btnCreateNewAccount);
+        btnLogin = findViewById(R.id.btnLogin);
+        edtName = findViewById(R.id.edtName);
+        edtPassword = findViewById(R.id.edtPassword);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         // Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -91,12 +97,24 @@ public class EmailLoginActivity extends AppCompatActivity {
         });
         btnFacebook.setOnClickListener(v -> btnFacebookHidden.performClick());
 
+        // Login with Email
+        btnLogin.setOnClickListener(v -> {
+            String email = edtName.getText().toString();
+            String password = edtPassword.getText().toString();
+            loginViewModel.signInWithEmailAndPassword(email, password);
+        });
+
         loginViewModel.getUser().observe(this, user -> {
             if (user != null) {
                 Intent intent = new Intent(this, OnboardActivity.class);
                 startActivity(intent);
                 finish();
             }
+        });
+
+        btnCreateNewAccount.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SignUpActivity.class);
+            startActivity(intent);
         });
     }
 
