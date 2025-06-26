@@ -32,23 +32,34 @@ public class LoginViewModel extends ViewModel {
                 });
     }
 
-    public LiveData<FirebaseUser> getUser() {
-        return userLiveData;
-    }
-
     public void handleFacebookAccessToken(AccessToken token) {
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
-                        Log.d("FB_LOGIN", "Firebase sign in success: " + user.getEmail());
+                        Log.d("FB_LOGIN", "Firebase sign in success: " + (user != null ? user.getEmail() : null));
                         userLiveData.setValue(user);
                     } else {
                         Log.e("FB_LOGIN", "Firebase sign in failed", task.getException());
                         userLiveData.setValue(null);
                     }
                 });
+    }
+
+    public void signInWithEmailAndPassword(String email, String password) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        userLiveData.setValue(firebaseAuth.getCurrentUser());
+                    } else {
+                        userLiveData.setValue(null);
+                    }
+                });
+    }
+
+    public LiveData<FirebaseUser> getUser() {
+        return userLiveData;
     }
 
     public void signOut() {
