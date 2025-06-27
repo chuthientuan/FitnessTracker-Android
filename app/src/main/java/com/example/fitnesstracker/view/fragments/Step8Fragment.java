@@ -13,7 +13,8 @@ import com.example.fitnesstracker.R;
 import com.google.android.material.card.MaterialCardView;
 
 public class Step8Fragment extends Fragment {
-    MaterialCardView card5K, card10K, cardHalf, cardFull, cardTriathlon, cardGeneral, cardNot;
+    private static MaterialCardView card5K, card10K, cardHalf, cardFull, cardTriathlon, cardGeneral, cardNot;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,5 +49,25 @@ public class Step8Fragment extends Fragment {
         cardGeneral.setChecked(false);
         cardNot.setChecked(false);
         selectedCard.setChecked(true);
+    }
+
+    public static String getSpecific() {
+        String specific = "";
+        if (card5K.isChecked()) {
+            specific = "5K race";
+        } else if (card10K.isChecked()) {
+            specific = "10K race";
+        } else if (cardHalf.isChecked()) {
+            specific = "Half marathon";
+        } else if (cardFull.isChecked()) {
+            specific = "Full marathon";
+        } else if (cardTriathlon.isChecked()) {
+            specific = "Triathlon";
+        } else if (cardGeneral.isChecked()) {
+            specific = "General fitness & Wellness";
+        } else if (cardNot.isChecked()) {
+            specific = "Not training for an event";
+        }
+        return specific;
     }
 }
