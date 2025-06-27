@@ -32,7 +32,6 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="100dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/bebasneue_regular"

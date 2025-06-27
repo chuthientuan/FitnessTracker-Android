@@ -27,9 +27,9 @@ public class SplashActivity extends AppCompatActivity {
         });
         new Handler().postDelayed(() -> {
             if (FirebaseUtil.isUserLoggedIn()) {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
             } else {
-                startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
+                startActivity(new Intent(this, WelcomeActivity.class));
             }
             finish();
         }, 1000);

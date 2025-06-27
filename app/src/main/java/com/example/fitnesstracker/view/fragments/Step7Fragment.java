@@ -13,7 +13,8 @@ import com.example.fitnesstracker.R;
 import com.google.android.material.card.MaterialCardView;
 
 public class Step7Fragment extends Fragment {
-    MaterialCardView cardImprove, cardIncrease, cardLose, cardStay, cardForFun;
+    private static MaterialCardView cardImprove, cardIncrease, cardLose, cardStay, cardForFun;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,5 +43,21 @@ public class Step7Fragment extends Fragment {
         cardStay.setChecked(false);
         cardForFun.setChecked(false);
         selectedCard.setChecked(true);
+    }
+
+    public static String getGoal() {
+        String goal = "";
+        if (cardImprove.isChecked()) {
+            goal = "Improve endurance";
+        } else if (cardIncrease.isChecked()) {
+            goal = "Increase speed";
+        } else if (cardLose.isChecked()) {
+            goal = "Lose weight";
+        } else if (cardStay.isChecked()) {
+            goal = "Stay fit & healthy";
+        } else if (cardForFun.isChecked()) {
+            goal = "Just for fun";
+        }
+        return goal;
     }
 }

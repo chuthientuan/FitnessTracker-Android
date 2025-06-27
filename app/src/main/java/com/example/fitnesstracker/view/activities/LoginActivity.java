@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fitnesstracker.R;
+import com.example.fitnesstracker.utils.FirebaseUtil;
 import com.example.fitnesstracker.viewmodel.LoginViewModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -97,9 +98,17 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel.getUser().observe(this, user -> {
             if (user != null) {
-                Intent intent = new Intent(this, OnboardActivity.class);
-                startActivity(intent);
-                finish();
+                FirebaseUtil.checkProfileExists(exists -> {
+                    if (exists) {
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(this, OnboardActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
             }
         });
         btnEmail.setOnClickListener(v -> {
@@ -121,9 +130,6 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 loginViewModel.signInWithGoogle(account.getIdToken());
-                Intent intent = new Intent(this, OnboardActivity.class);
-                startActivity(intent);
-                finish();
             } catch (ApiException e) {
                 Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show();
             }
