@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.fitnesstracker.R;
 
 public class Step4Fragment extends Fragment {
-    NumberPicker weightPicker;
+    private static NumberPicker weightPicker;
 
     @Nullable
     @Override
@@ -38,5 +38,9 @@ public class Step4Fragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             weightPicker.setTextSize(48);
         }
+    }
+
+    public static double getWeight() {
+        return weightPicker.getValue() + 30;
     }
 }

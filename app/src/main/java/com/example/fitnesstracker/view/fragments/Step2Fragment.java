@@ -13,7 +13,8 @@ import com.example.fitnesstracker.R;
 import com.google.android.material.card.MaterialCardView;
 
 public class Step2Fragment extends Fragment {
-    MaterialCardView cardMan, cardWoman, cardOther, cardNot;
+    private static MaterialCardView cardMan, cardWoman, cardOther, cardNot;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,5 +40,19 @@ public class Step2Fragment extends Fragment {
         cardMan.setChecked(false);
         cardNot.setChecked(false);
         selectedCard.setChecked(true);
+    }
+
+    public static String getGender() {
+        String gender = "";
+        if (cardMan.isChecked()) {
+            gender = "Man";
+        } else if (cardWoman.isChecked()) {
+            gender = "Woman";
+        } else if (cardOther.isChecked()) {
+            gender = "Other";
+        } else if (cardNot.isChecked()) {
+            gender = "I don’t want to answer";
+        }
+        return gender;
     }
 }

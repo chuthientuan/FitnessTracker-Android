@@ -14,7 +14,8 @@ import androidx.fragment.app.Fragment;
 import com.example.fitnesstracker.R;
 
 public class Step3Fragment extends Fragment {
-    NumberPicker heightPicker;
+    private static NumberPicker heightPicker;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,5 +38,9 @@ public class Step3Fragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             heightPicker.setTextSize(48);
         }
+    }
+
+    public static double getHeight() {
+        return heightPicker.getValue() + 120;
     }
 }

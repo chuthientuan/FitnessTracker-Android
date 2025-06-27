@@ -13,7 +13,8 @@ import com.example.fitnesstracker.R;
 import com.google.android.material.card.MaterialCardView;
 
 public class Step6Fragment extends Fragment {
-    MaterialCardView card1_2, card3_4, card5, cardWant;
+    private static MaterialCardView card1_2, card3_4, card5, cardWant;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,5 +40,19 @@ public class Step6Fragment extends Fragment {
         card5.setChecked(false);
         cardWant.setChecked(false);
         selectedCard.setChecked(true);
+    }
+
+    public static String getFrequency() {
+        String frequency = "";
+        if (card1_2.isChecked()) {
+            frequency = "1-2 Times a Week";
+        } else if (card3_4.isChecked()) {
+            frequency = "3-4 Times a Week";
+        } else if (card5.isChecked()) {
+            frequency = "5+ Times a Week";
+        } else if (cardWant.isChecked()) {
+            frequency = "I don’t run yet but I want to start";
+        }
+        return frequency;
     }
 }

@@ -15,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fitnesstracker.R;
+import com.example.fitnesstracker.utils.FirebaseUtil;
 import com.example.fitnesstracker.viewmodel.LoginViewModel;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -106,9 +107,17 @@ public class EmailLoginActivity extends AppCompatActivity {
 
         loginViewModel.getUser().observe(this, user -> {
             if (user != null) {
-                Intent intent = new Intent(this, OnboardActivity.class);
-                startActivity(intent);
-                finish();
+                FirebaseUtil.checkProfileExists(exists -> {
+                    if (exists) {
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Intent intent = new Intent(this, OnboardActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
             }
         });
 

@@ -13,7 +13,8 @@ import com.example.fitnesstracker.R;
 import com.google.android.material.card.MaterialCardView;
 
 public class Step5Fragment extends Fragment {
-    MaterialCardView cardBeginner, cardIntermediate, cardAdvance;
+    private static MaterialCardView cardBeginner, cardIntermediate, cardAdvance;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,5 +37,17 @@ public class Step5Fragment extends Fragment {
         cardIntermediate.setChecked(false);
         cardAdvance.setChecked(false);
         selectedCard.setChecked(true);
+    }
+
+    public static String getExperience() {
+        String experience = "";
+        if (cardBeginner.isChecked()) {
+            experience = "Beginner";
+        } else if (cardIntermediate.isChecked()) {
+            experience = "Intermediate";
+        } else if (cardAdvance.isChecked()) {
+            experience = "Advance";
+        }
+        return experience;
     }
 }
