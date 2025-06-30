@@ -18,6 +18,9 @@
         android:theme="@style/Theme.FitnessTracker"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.RecordActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.SplashscreenTheme">
@@ -51,8 +54,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".view.activities.MainActivity"
             android:exported="false" />
