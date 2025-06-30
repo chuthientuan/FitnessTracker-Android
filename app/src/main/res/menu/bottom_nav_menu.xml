@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_filled"
+        android:title="Home" />
+    <item
+        android:id="@+id/nav_workouts"
+        android:enabled="true"
+        android:icon="@drawable/ic_checkbox_outline"
+        android:title="Workouts" />
+    <item
+        android:id="@+id/nav_record"
+        android:enabled="true"
+        android:icon="@drawable/ic_record"
+        android:title="Record" />
+    <item
+        android:id="@+id/nav_analysis"
+        android:enabled="true"
+        android:icon="@drawable/ic_analytics_outline"
+        android:title="You" />
+</menu>
