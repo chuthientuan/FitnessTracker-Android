@@ -4,6 +4,7 @@ import com.example.fitnesstracker.data.model.User;
 import com.example.fitnesstracker.data.model.UserOnboarding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserRepository {
@@ -25,6 +26,13 @@ public class UserRepository {
                 .collection("onboarding")
                 .document("data")
                 .set(onboarding)
+                .addOnCompleteListener(listener);
+    }
+
+    public void getUserProfile(String userId, OnCompleteListener<DocumentSnapshot> listener) {
+        firestore.collection("users")
+                .document(userId)
+                .get()
                 .addOnCompleteListener(listener);
     }
 }

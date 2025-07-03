@@ -8,6 +8,9 @@ public class User {
     private double height;
     private double weight;
 
+    public User() {
+    }
+
     public User(String userName, String userId, String email, String gender, double height, double weight) {
         this.userName = userName;
         this.userId = userId;
