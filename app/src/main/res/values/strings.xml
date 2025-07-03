@@ -68,4 +68,7 @@
     <string name="email">Email</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activities">Activities</string>
+    <string name="recent_activities">Recent activities</string>
+    <string name="see_all">See all</string>
 </resources>
