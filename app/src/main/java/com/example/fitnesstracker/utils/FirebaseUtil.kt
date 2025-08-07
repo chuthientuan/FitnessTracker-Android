@@ -23,11 +23,11 @@ object FirebaseUtil {
             .collection("users")
             .document(userId!!)
             .get()
-            .addOnSuccessListener(OnSuccessListener { documentSnapshot: DocumentSnapshot? ->
-                val hasUserId = documentSnapshot!!.contains("userId")
+            .addOnSuccessListener(OnSuccessListener { documentSnapshot: DocumentSnapshot ->
+                val hasUserId = documentSnapshot.contains("userId")
                 listener.onResult(hasUserId)
             })
-            .addOnFailureListener { e: Exception? ->
+            .addOnFailureListener { e: Exception ->
                 listener.onResult(false)
             }
     }

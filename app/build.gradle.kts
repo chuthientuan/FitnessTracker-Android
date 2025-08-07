@@ -1,5 +1,3 @@
-import java.util.regex.Pattern.compile
-
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
@@ -8,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.example.fitnesstracker"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.fitnesstracker"
-        minSdk = 24
-        targetSdk = 35
+        minSdk = 26
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -51,6 +49,10 @@ dependencies {
     implementation("com.facebook.android:facebook-android-sdk:18.0.3")
     implementation("com.google.android.gms:play-services-auth:21.3.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("androidx.health.connect:connect-client:1.1.0-rc02")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation(libs.firebase.auth)
     implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
