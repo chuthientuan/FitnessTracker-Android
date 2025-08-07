@@ -1,6 +1,5 @@
 package com.example.fitnesstracker.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,16 +33,11 @@ class LoginViewModel : ViewModel() {
     fun handleFacebookAccessToken(token: AccessToken) {
         val credential = FacebookAuthProvider.getCredential(token.token)
         firebaseAuth.signInWithCredential(credential)
-            .addOnCompleteListener { task: Task<AuthResult?>? ->
-                if (task!!.isSuccessful) {
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
-                    Log.d(
-                        "FB_LOGIN",
-                        "Firebase sign in success: " + (user?.email)
-                    )
                     userLiveData.value = user
                 } else {
-                    Log.e("FB_LOGIN", "Firebase sign in failed", task.exception)
                     userLiveData.value = null
                 }
             }
