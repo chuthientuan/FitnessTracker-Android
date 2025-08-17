@@ -2,43 +2,37 @@ package com.example.fitnesstracker.view.activities
 
 import android.content.Intent
 import android.content.res.ColorStateList
-import android.net.Uri
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.toColorInt
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.PermissionController
-import androidx.health.connect.client.permission.HealthPermission
-import androidx.health.connect.client.records.StepsRecord
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.fitnesstracker.R
+import com.example.fitnesstracker.data.repository.FitnessRepository
+import com.example.fitnesstracker.data.repository.HealthConnectManager
 import com.example.fitnesstracker.view.fragments.HomeFragment
 import com.example.fitnesstracker.view.fragments.ProfileFragment
 import com.example.fitnesstracker.view.fragments.WorkoutsFragment
+import com.example.fitnesstracker.viewmodel.MainViewModel
+import com.example.fitnesstracker.viewmodel.MainViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.launch
-import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var bottomNav: BottomNavigationView
-
-    private val permissions = setOf(
-        HealthPermission.getReadPermission(StepsRecord::class),
-        HealthPermission.getWritePermission(StepsRecord::class)
-    )
-
+    private val healthConnectManager = HealthConnectManager(this)
     private val providerPackageName = "com.google.android.apps.healthdata"
-
     private lateinit var requestPermissions: ActivityResultLauncher<Set<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,13 +56,12 @@ class MainActivity : AppCompatActivity() {
         requestPermissions = registerForActivityResult(
             PermissionController.createRequestPermissionResultContract()
         ) { granted ->
-            if (granted.containsAll(permissions)) {
+            if (granted.containsAll(healthConnectManager.getPermissions())) {
                 Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
             }
         }
-
         checkHealthConnectAvailability()
     }
 
@@ -83,15 +76,18 @@ class MainActivity : AppCompatActivity() {
                     item.setIcon(R.drawable.ic_home_filled)
                     HomeFragment()
                 }
+
                 R.id.nav_workouts -> {
                     item.setIcon(R.drawable.ic_checkbox_filled)
                     WorkoutsFragment()
                 }
+
                 R.id.nav_record -> return@OnItemSelectedListener true
                 R.id.nav_analysis -> {
                     item.setIcon(R.drawable.ic_analytics_filled)
                     ProfileFragment()
                 }
+
                 else -> null
             }
 
@@ -106,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkHealthConnectAvailability() {
         // Kiểm tra trạng thái SDK
-        when (val status = HealthConnectClient.getSdkStatus(this, providerPackageName)) {
+        when (HealthConnectClient.getSdkStatus(this, providerPackageName)) {
             HealthConnectClient.SDK_UNAVAILABLE -> {
                 Toast.makeText(this, "Health Connect SDK không khả dụng", Toast.LENGTH_SHORT).show()
             }
@@ -125,7 +121,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             HealthConnectClient.SDK_AVAILABLE -> {
-                val healthConnectClient = HealthConnectClient.getOrCreate(this)
+                val healthConnectClient = healthConnectManager.getClient()
+                // 1. Tạo Repository với client đã có
+                val repository = FitnessRepository(healthConnectClient)
+
+                // 2. Tạo Factory với repository đã có
+                val viewModelFactory = MainViewModelFactory(repository)
+
+                // 3. Khởi tạo ViewModel bằng Factory
+                mainViewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+
                 lifecycleScope.launch {
                     checkPermissionsAndRun(healthConnectClient)
                 }
@@ -135,10 +140,11 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun checkPermissionsAndRun(healthConnectClient: HealthConnectClient) {
         val granted = healthConnectClient.permissionController.getGrantedPermissions()
-        if (!granted.containsAll(permissions)) {
-            requestPermissions.launch(permissions)
+        if (!granted.containsAll(healthConnectManager.getPermissions())) {
+            requestPermissions.launch(healthConnectManager.getPermissions())
         } else {
-            Toast.makeText(this, "Health Connect permissions đã cấp", Toast.LENGTH_SHORT).show()
+            mainViewModel.insertDataTest()
+            mainViewModel.readFitnessData()
         }
     }
 }
