@@ -134,9 +134,6 @@ class EmailLoginActivity : AppCompatActivity() {
             try {
                 val account = task.getResult(ApiException::class.java)
                 loginViewModel?.signInWithGoogle(account.idToken)
-                val intent = Intent(this, OnboardActivity::class.java)
-                startActivity(intent)
-                finish()
             } catch (_: ApiException) {
                 Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show()
             }
