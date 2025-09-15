@@ -82,7 +82,10 @@ class MainActivity : AppCompatActivity() {
                     WorkoutsFragment()
                 }
 
-                R.id.nav_record -> return@OnItemSelectedListener true
+                R.id.nav_record -> {
+                    startActivity(Intent(this, RecordActivity::class.java))
+                    return@OnItemSelectedListener true
+                }
                 R.id.nav_analysis -> {
                     item.setIcon(R.drawable.ic_analytics_filled)
                     ProfileFragment()
