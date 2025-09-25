@@ -34,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
+            android:background="@color/nav_bottom"
             android:fontFamily="@font/figtree_regular"
             android:hint="@string/full_name"
             android:inputType="text"

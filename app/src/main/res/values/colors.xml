@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Màu sắc từ hệ thống thiết kế mới (phiên bản SÁNG) -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="text_color">#24211E</color>
@@ -11,4 +12,28 @@
     <color name="unSelect">#787470</color>
     <color name="text_primary">#3A3A3A</color>
     <color name="text_hint">#888888</color>
+    <color name="nav_bottom">#FFFFFFFF</color>
+    <color name="progress_indicator">@color/black</color>
+
+    <!-- Màu sắc cơ bản mặc định của Material Design -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- Màu sắc ngữ nghĩa cho giao diện SÁNG (Dùng cho Theme) -->
+    <color name="backgroundColor">@color/background</color>
+    <color name="surfaceColor">#FFFFFFFF</color> <!-- Bề mặt (Card) là màu trắng -->
+    <color name="textColorPrimary">@color/text_primary</color>
+    <color name="textColorSecondary">@color/unSelect</color>
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryVariant">#FF3700B3</color>
+    <color name="colorOnPrimary">@color/black</color>
+
+    <!-- Màu nút bấm cho màn hình Record -->
+    <color name="buttonStart">#2E7D32</color>
+    <color name="buttonPause">#1976D2</color>
+    <color name="buttonFinish">#C62828</color>
 </resources>
+

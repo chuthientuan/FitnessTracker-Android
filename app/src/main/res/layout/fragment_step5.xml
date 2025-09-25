@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/nav_bottom"
             android:checkable="true"
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
@@ -58,7 +59,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/beginner_just_starting_out"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -68,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/nav_bottom"
             android:checkable="true"
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
@@ -90,7 +92,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/intermediate_run_occasionally"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -99,6 +101,7 @@
             android:id="@+id/cardAdvance"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:backgroundTint="@color/nav_bottom"
             android:checkable="true"
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
@@ -121,7 +124,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/advanced_run_regularly"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
