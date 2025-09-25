@@ -22,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory // MỚI: Import
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng // MỚI: Import
+import com.google.android.material.card.MaterialCardView
 
 class RecordActivity : AppCompatActivity() {
     private var map: GoogleMap? = null
@@ -33,6 +34,8 @@ class RecordActivity : AppCompatActivity() {
     // Hằng số cho các mã yêu cầu quyền
     private val REQUEST_CODE_FOREGROUND_LOCATION_PERMISSION = 0
     private val REQUEST_CODE_BACKGROUND_LOCATION_PERMISSION = 1
+    private var cardBackHome: MaterialCardView? = null
+    private var isBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +54,15 @@ class RecordActivity : AppCompatActivity() {
 
         mapView = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         requestLocationPermissions()
+        cardBackHome = findViewById(R.id.cardBackHome)
+        cardBackHome?.setOnClickListener {
+            isBack = true
+            finish()
+        }
     }
+
+    val isBackFromRecord: Boolean
+        get() = isBack
 
     private fun setupMap() {
         mapView?.getMapAsync { googleMap ->
@@ -101,7 +112,10 @@ class RecordActivity : AppCompatActivity() {
         // Kiểm tra quyền truy cập vị trí tiền cảnh
         if (TrackingUtil.hasForegroundLocationPermission(this)) {
             // Nếu đã có quyền tiền cảnh, kiểm tra quyền nền (cho Android Q+)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !TrackingUtil.hasBackgroundLocationPermission(this)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !TrackingUtil.hasBackgroundLocationPermission(
+                    this
+                )
+            ) {
                 requestBackgroundLocationPermission()
             } else {
                 // Nếu đã có tất cả các quyền cần thiết
@@ -146,13 +160,18 @@ class RecordActivity : AppCompatActivity() {
                         setupMap()
                     }
                 } else {
-                    if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    if (!ActivityCompat.shouldShowRequestPermissionRationale(
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        )
+                    ) {
                         showSettingsDialog()
                     } else {
                         requestLocationPermissions()
                     }
                 }
             }
+
             REQUEST_CODE_BACKGROUND_LOCATION_PERMISSION -> {
                 setupMap()
             }

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/backgroundColor"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".view.activities.WelcomeActivity">
@@ -38,14 +38,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/green_bg"
+        app:cornerRadius="4dp"
         android:fontFamily="@font/figtree_medium"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="@string/join_now"
-        android:textColor="@color/text_color"
-        android:textSize="14sp"
-        app:backgroundTint="@null" />
+        android:textSize="14sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
@@ -58,5 +56,6 @@
         android:text="@string/login"
         android:textColor="@color/text_color"
         android:textSize="14sp"
+        app:backgroundTint="@color/nav_bottom"
         app:cornerRadius="4dp" />
 </LinearLayout>

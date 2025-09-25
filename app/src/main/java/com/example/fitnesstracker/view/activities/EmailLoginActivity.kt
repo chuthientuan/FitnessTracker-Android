@@ -27,6 +27,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseUser
 
 class EmailLoginActivity : AppCompatActivity() {
@@ -37,8 +38,8 @@ class EmailLoginActivity : AppCompatActivity() {
     var btnFacebook: MaterialButton? = null
     var btnCreateNewAccount: MaterialButton? = null
     var btnLogin: MaterialButton? = null
-    var edtName: MaterialAutoCompleteTextView? = null
-    var edtPassword: MaterialAutoCompleteTextView? = null
+    var edtEmail: TextInputEditText? = null
+    var edtPassword: TextInputEditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +57,7 @@ class EmailLoginActivity : AppCompatActivity() {
         btnFacebook = findViewById(R.id.btnFacebook)
         btnCreateNewAccount = findViewById(R.id.btnCreateNewAccount)
         btnLogin = findViewById(R.id.btnLogin)
-        edtName = findViewById(R.id.edtName)
+        edtEmail = findViewById(R.id.edtEmail)
         edtPassword = findViewById(R.id.edtPassword)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         // Google Sign In
@@ -97,7 +98,7 @@ class EmailLoginActivity : AppCompatActivity() {
 
         // Login with Email
         btnLogin?.setOnClickListener { v: View? ->
-            val email = edtName?.text.toString()
+            val email = edtEmail?.text.toString()
             val password = edtPassword?.text.toString()
             loginViewModel?.signInWithEmailAndPassword(email, password)
         }

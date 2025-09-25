@@ -35,7 +35,7 @@
             android:layout_marginVertical="8dp"
             android:max="100"
             android:progress="12"
-            app:indicatorColor="@color/black" />
+            app:indicatorColor="@color/progress_indicator" />
     </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -60,9 +60,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="@string/next"
-        android:textColor="@color/text_color"
         android:textSize="14sp"
-        app:backgroundTint="@color/primary"
         app:cornerRadius="4dp" />
 
     <LinearLayout

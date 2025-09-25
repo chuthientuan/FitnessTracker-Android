@@ -3,6 +3,13 @@
     <style name="Base.Theme.FitnessTracker" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+
+        <!-- Màu cho thanh trạng thái (status bar) -->
+        <item name="android:statusBarColor">?attr/backgroundColor</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.FitnessTracker" parent="Base.Theme.FitnessTracker" />

@@ -27,7 +27,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -40,8 +40,8 @@ class SignUpActivity : AppCompatActivity() {
     var btnGoogle: MaterialButton? = null
     var btnFacebook: MaterialButton? = null
     var btnSignup: MaterialButton? = null
-    var edtName: MaterialAutoCompleteTextView? = null
-    var edtPassword: MaterialAutoCompleteTextView? = null
+    var edtEmail: TextInputEditText? = null
+    var edtPassword: TextInputEditText? = null
     var txtAlreadyAccount: MaterialTextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
         btnFacebookHidden = findViewById(R.id.btnFacebookHidden)
         btnFacebook = findViewById(R.id.btnFacebook)
         btnSignup = findViewById(R.id.btnSignup)
-        edtName = findViewById(R.id.edtName)
+        edtEmail = findViewById(R.id.edtEmail)
         edtPassword = findViewById(R.id.edtPassword)
         txtAlreadyAccount = findViewById(R.id.txtAlreadyAccount)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
@@ -116,7 +116,7 @@ class SignUpActivity : AppCompatActivity() {
         // Signup with Email
         btnSignup!!.setOnClickListener { v: View? ->
             val firebaseAuth = FirebaseAuth.getInstance()
-            val email = edtName?.text.toString()
+            val email = edtEmail?.text.toString()
             val password = edtPassword?.text.toString()
             firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task: Task<AuthResult?>? ->
