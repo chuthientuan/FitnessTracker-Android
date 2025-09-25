@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/nav_bottom"
             android:checkable="true"
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
@@ -58,7 +59,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/_1_2_times"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -68,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/nav_bottom"
             android:checkable="true"
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
@@ -90,7 +92,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/_3_4_times"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -100,6 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/nav_bottom"
             android:checkable="true"
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
@@ -122,7 +125,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/_5_times"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -131,6 +134,7 @@
             android:id="@+id/cardWant"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:backgroundTint="@color/nav_bottom"
             android:checkable="true"
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
@@ -153,7 +157,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/i_don_t_run_yet_but_i_want_to_start"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

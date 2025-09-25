@@ -40,6 +40,7 @@
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
             app:checkedIconGravity="TOP_END"
+            android:backgroundTint="@color/nav_bottom"
             app:checkedIconSize="20dp"
             app:checkedIconTint="@color/text_color"
             app:strokeColor="@color/stroke_step"
@@ -58,7 +59,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/improve_endurance"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -73,6 +74,7 @@
             app:checkedIcon="@drawable/ic_check"
             app:checkedIconGravity="TOP_END"
             app:checkedIconSize="20dp"
+            android:backgroundTint="@color/nav_bottom"
             app:checkedIconTint="@color/text_color"
             app:strokeColor="@color/stroke_step"
             app:strokeWidth="1dp">
@@ -90,7 +92,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/increase_speed"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -104,6 +106,7 @@
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
             app:checkedIconGravity="TOP_END"
+            android:backgroundTint="@color/nav_bottom"
             app:checkedIconSize="20dp"
             app:checkedIconTint="@color/text_color"
             app:strokeColor="@color/stroke_step"
@@ -122,7 +125,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/lose_weight"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -136,6 +139,7 @@
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
             app:checkedIconGravity="TOP_END"
+            android:backgroundTint="@color/nav_bottom"
             app:checkedIconSize="20dp"
             app:checkedIconTint="@color/text_color"
             app:strokeColor="@color/stroke_step"
@@ -154,7 +158,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/stay_fit_amp_healthy"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -168,6 +172,7 @@
             app:cardCornerRadius="4dp"
             app:checkedIcon="@drawable/ic_check"
             app:checkedIconGravity="TOP_END"
+            android:backgroundTint="@color/nav_bottom"
             app:checkedIconSize="20dp"
             app:checkedIconTint="@color/text_color"
             app:strokeColor="@color/stroke_step"
@@ -186,7 +191,7 @@
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/figtree_regular"
                     android:text="@string/just_for_fun"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

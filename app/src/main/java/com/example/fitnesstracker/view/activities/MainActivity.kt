@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNav: BottomNavigationView
     private val healthConnectManager = HealthConnectManager(this)
     private val providerPackageName = "com.google.android.apps.healthdata"
+    private var lastSelectedFragmentId: Int = R.id.nav_home
     private lateinit var requestPermissions: ActivityResultLauncher<Set<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +72,9 @@ class MainActivity : AppCompatActivity() {
             bottomNav.menu.findItem(R.id.nav_workouts).setIcon(R.drawable.ic_checkbox_outline)
             bottomNav.menu.findItem(R.id.nav_analysis).setIcon(R.drawable.ic_analytics_outline)
 
+            if (item.itemId != R.id.nav_record) {
+                lastSelectedFragmentId = item.itemId
+            }
             val selectedFragment: Fragment? = when (item.itemId) {
                 R.id.nav_home -> {
                     item.setIcon(R.drawable.ic_home_filled)
@@ -84,8 +88,9 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.nav_record -> {
                     startActivity(Intent(this, RecordActivity::class.java))
-                    return@OnItemSelectedListener true
+                    return@OnItemSelectedListener false
                 }
+
                 R.id.nav_analysis -> {
                     item.setIcon(R.drawable.ic_analytics_filled)
                     ProfileFragment()
@@ -101,6 +106,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bottomNav.selectedItemId = lastSelectedFragmentId
     }
 
     private fun checkHealthConnectAvailability() {

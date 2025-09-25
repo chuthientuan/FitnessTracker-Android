@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Màu sắc từ hệ thống thiết kế mới (phiên bản TỐI) -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="text_color">#EAEAEA</color> <!-- Chữ màu trắng ngà -->
+    <color name="primary">#83E5C3</color> <!-- Giữ nguyên màu chính vì nó đủ sáng -->
+    <color name="background">#1E1E1E</color> <!-- Nền xám đậm, không phải đen tuyền -->
+    <color name="stroke">#424242</color> <!-- Viền màu xám đậm hơn -->
+    <color name="line">#515151</color>
+    <color name="stroke_step">#4A4A4A</color>
+    <color name="unSelect">#9E9E9E</color> <!-- Màu xám nhạt hơn cho mục không được chọn -->
+    <color name="text_primary">#FFFFFF</color> <!-- Chữ chính màu trắng -->
+    <color name="text_hint">#BDBDBD</color> <!-- Chữ gợi ý màu xám nhạt -->
+    <color name="nav_bottom">#333232</color>
+    <color name="progress_indicator">@color/white</color>
+
+    <!-- Màu sắc cơ bản mặc định của Material Design -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- Màu sắc ngữ nghĩa cho giao diện TỐI (Dùng cho Theme) -->
+    <color name="backgroundColor">@color/background</color>
+    <color name="surfaceColor">#1E1E1E</color> <!-- Bề mặt (Card) sáng hơn nền một chút -->
+    <color name="textColorPrimary">@color/text_primary</color>
+    <color name="textColorSecondary">@color/unSelect</color>
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryVariant">#FF3700B3</color>
+    <color name="colorOnPrimary">@color/black</color> <!-- Chữ trên nền màu chính -->
+
+    <!-- Màu nút bấm cho màn hình Record (có thể làm sáng hơn một chút) -->
+    <color name="buttonStart">#4CAF50</color>
+    <color name="buttonPause">#2196F3</color>
+    <color name="buttonFinish">#F44336</color>
+
+</resources>
+
