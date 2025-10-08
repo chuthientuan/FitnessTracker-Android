@@ -8,14 +8,20 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.fitnesstracker.R
+import com.example.fitnesstracker.data.repository.TrackingService
 import com.example.fitnesstracker.utils.TrackingUtil
+import com.example.fitnesstracker.utils.TrackingUtil.ACTION_PAUSE_SERVICE
+import com.example.fitnesstracker.utils.TrackingUtil.ACTION_START_OR_RESUME_SERVICE
+import com.example.fitnesstracker.utils.TrackingUtil.ACTION_STOP_SERVICE
 import com.google.android.gms.location.FusedLocationProviderClient // MỚI: Import
 import com.google.android.gms.location.LocationServices // MỚI: Import
 import com.google.android.gms.maps.CameraUpdateFactory // MỚI: Import
@@ -23,10 +29,16 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng // MỚI: Import
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class RecordActivity : AppCompatActivity() {
     private var map: GoogleMap? = null
     private var mapView: SupportMapFragment? = null
+    private var btnStart: ExtendedFloatingActionButton? = null
+    private var runningControlsContainer: LinearLayout? = null
+    private var btnPause: FloatingActionButton? = null
+    private var btnFinish: FloatingActionButton? = null
 
     // MỚI: Khai báo FusedLocationProviderClient để lấy vị trí
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -35,7 +47,6 @@ class RecordActivity : AppCompatActivity() {
     private val REQUEST_CODE_FOREGROUND_LOCATION_PERMISSION = 0
     private val REQUEST_CODE_BACKGROUND_LOCATION_PERMISSION = 1
     private var cardBackHome: MaterialCardView? = null
-    private var isBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +59,10 @@ class RecordActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        btnStart = findViewById(R.id.btnStart)
+        runningControlsContainer = findViewById(R.id.runningControlsContainer)
+        btnPause = findViewById(R.id.btnPause)
+        btnFinish = findViewById(R.id.btnFinish)
 
         // MỚI: Khởi tạo FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -56,13 +71,22 @@ class RecordActivity : AppCompatActivity() {
         requestLocationPermissions()
         cardBackHome = findViewById(R.id.cardBackHome)
         cardBackHome?.setOnClickListener {
-            isBack = true
             finish()
         }
+        btnStart?.setOnClickListener {
+            sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
+            runningControlsContainer?.visibility = View.VISIBLE
+            btnStart?.visibility = View.GONE
+        }
+        btnPause?.setOnClickListener {
+            sendCommandToService(ACTION_PAUSE_SERVICE)
+        }
+        btnFinish?.setOnClickListener {
+            sendCommandToService(ACTION_STOP_SERVICE)
+            runningControlsContainer?.visibility = View.GONE
+            btnStart?.visibility = View.VISIBLE
+        }
     }
-
-    val isBackFromRecord: Boolean
-        get() = isBack
 
     private fun setupMap() {
         mapView?.getMapAsync { googleMap ->
@@ -109,6 +133,13 @@ class RecordActivity : AppCompatActivity() {
     }
 
     private fun requestLocationPermissions() {
+        val permissionsToRequest = mutableListOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionsToRequest.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
         // Kiểm tra quyền truy cập vị trí tiền cảnh
         if (TrackingUtil.hasForegroundLocationPermission(this)) {
             // Nếu đã có quyền tiền cảnh, kiểm tra quyền nền (cho Android Q+)
@@ -127,10 +158,7 @@ class RecordActivity : AppCompatActivity() {
         // Nếu chưa có quyền tiền cảnh, yêu cầu nó
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ),
+            permissionsToRequest.toTypedArray(), // Chuyển list thành array
             REQUEST_CODE_FOREGROUND_LOCATION_PERMISSION
         )
     }
@@ -191,6 +219,12 @@ class RecordActivity : AppCompatActivity() {
             .setNegativeButton("Hủy", null)
             .show()
     }
+
+    private fun sendCommandToService(action: String) =
+        Intent(this, TrackingService::class.java).also {
+            it.action = action
+            ContextCompat.startForegroundService(this, it)
+        }
 
     // Các phương thức vòng đời của MapView
     override fun onResume() {

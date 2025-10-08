@@ -69,8 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBackStep"
@@ -103,13 +104,11 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="@string/next"
-            android:textColor="@color/text_color"
             android:textSize="14sp"
             app:backgroundTint="@color/primary"
             app:cornerRadius="4dp"
             app:icon="@drawable/ic_next"
             app:iconGravity="textEnd"
-            app:iconSize="20dp"
-            app:iconTint="@color/text_color" />
+            app:iconSize="20dp" />
     </LinearLayout>
 </LinearLayout>
